@@ -6,7 +6,7 @@ module.exports = `
      code: String!
    }
    
-   type ShortUrl: String!
+   scalar ShortUrl: String!
 
    type Query {
    	shortenURL(url: String): ShortUrl!
