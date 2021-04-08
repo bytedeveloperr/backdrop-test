@@ -1,4 +1,4 @@
-const errors = require("./errors")
-const notFound = require("./not-found")
+const errors = require("./errors");
+const notFound = require("./not-found");
 
-module.exports = { errors, notFound }
+module.exports = { errors, notFound };

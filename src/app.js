@@ -1,11 +1,11 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
-const { errors, notFound } = require("./middleware")
-const { database, handler } = require("./lib")
-const handleRedirect = require("./controllers/handleRedirect")
+const { errors, notFound } = require("./middleware");
+const { database, handler } = require("./lib");
+const handleRedirect = require("./controllers/handleRedirect");
 const schema = require("./schema");
 
-database.init()
+database.init();
 const app = express();
 
 app.use(
@@ -13,12 +13,12 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
-    customFormatErrorFn: (e) => ({ message: e.message, status: "error" })
+    customFormatErrorFn: (e) => ({ message: e.message, status: "error" }),
   })
 );
 
 app.get("/:code", handler.request(handleRedirect));
-app.use("*", notFound())
-app.use(errors())
+app.use("*", notFound());
+app.use(errors());
 
-module.exports = app
+module.exports = app;

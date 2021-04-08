@@ -1,5 +1,5 @@
-const database = require("./database")
-const random = require("./random")
-const handler = require("./handler")
+const database = require("./database");
+const random = require("./random");
+const handler = require("./handler");
 
-module.exports = { database, random, handler }
+module.exports = { database, random, handler };
