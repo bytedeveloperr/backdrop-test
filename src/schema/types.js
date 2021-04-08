@@ -8,7 +8,7 @@ module.exports = `
    
    type Query {
     # url - the url that wants to be shortened
-   	shortenURL(url: String): Url!
+   	shortenURL(longUrl: String): Url!
    }
    
    schema {
