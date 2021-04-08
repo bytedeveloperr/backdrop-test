@@ -1,7 +1,6 @@
 const express = require("express");
 const graphql = require("graphql");
 const { graphqlHTTP } = require("express-graphql");
-
 const database = require("./src/utils/database")
 const schema = require("./src/schema");
 
@@ -13,15 +12,16 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
+    customFormatErrorFn: (e) => ({ message: e.message, status: "error" })
   })
 );
 
 app.get("/:code", async (req, res) => {
   const url = await database.findURLByCode(req.params.code)
   if (url) {
-    res.redirect(url.url);
+    res.redirect(url.shortUrl);
   } else {
-    res.send("url isn't shortened");
+    res.status(404).json({ message: "url isn't shortened", status: "error" });
   }
 });
 

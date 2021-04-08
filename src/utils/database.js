@@ -5,13 +5,12 @@ module.exports = {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     client.connect();
     try {
-      const sql = `CREATE TABLE IF NOT EXISTS short_urls (id SERIAL, url VARCHAR NOT NULL, code VARCHAR NOT NULL)`;
+      const sql = `CREATE TABLE IF NOT EXISTS urls (id SERIAL, longUrl VARCHAR NOT NULL, shortUrl VARCHAR NOT NULL, code VARCHAR NOT NULL)`;
       await client.query(sql);
       client.end();
     } catch (e) {
       client.end();
-      // throw new Error("An error ocurred, please try again");
-      console.log(e)
+      throw new Error("An error ocurred, please try again");
     }
   },
 
@@ -20,14 +19,13 @@ module.exports = {
     client.connect();
     try {
       const sql =
-        "INSERT INTO short_urls (url, code) VALUES ($1, $2) RETURNING *";
+        "INSERT INTO urls (longUrl, shortUrl, code) VALUES ($1, $2, $3) RETURNING *";
       const response = await client.query(sql, data);
       client.end();
       return response.rows[0];
     } catch (e) {
       client.end();
-      // throw new Error("An error ocurred, please try again");
-      console.log(e)
+      throw new Error("An error ocurred, please try again");
     }
   },
 
@@ -35,14 +33,13 @@ module.exports = {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     client.connect();
     try {
-      const sql = "SELECT * WHERE code = $1";
+      const sql = "SELECT * FROM urls WHERE code = $1";
       const response = await client.query(sql, [code]);
       client.end();
       return response.rows[0];
     } catch (e) {
       client.end();
-      // throw new Error("An error ocurred, please try again");
-      console.log(e)
+      throw new Error("An error ocurred, please try again");
     }
   },
 };
