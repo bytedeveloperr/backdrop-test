@@ -18,7 +18,7 @@ app.use(
 );
 
 app.get("/:code", async (req, res) => {
-  const url = await database.findURLByCode(code)
+  const url = await database.findURLByCode(req.params.code)
   if (url) {
     res.redirect(url.original);
   } else {
