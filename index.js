@@ -19,9 +19,9 @@ app.use(
 app.get("/:code", async (req, res) => {
   const url = await database.findURLByCode(req.params.code)
   if (url) {
-    res.redirect(url.shortUrl);
+    res.redirect(url.longUrl);
   } else {
-    res.status(404).json({ message: "url isn't shortened", status: "error" });
+    res.status(404).json({ message: "Invalid short URL", status: "error" });
   }
 });
 
