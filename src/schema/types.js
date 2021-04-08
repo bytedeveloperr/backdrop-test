@@ -7,7 +7,6 @@ module.exports = `
    }
    
    type Query {
-    # url - the url that wants to be shortened
    	shortenURL(longurl: String): Url!
    }
    
