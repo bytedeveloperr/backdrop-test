@@ -2,9 +2,9 @@ const { Client } = require("pg");
 
 module.exports = {
   async init() {
+    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    client.connect();
     try {
-      const client = new Client({ connectionString: process.env.DATABASE_URL });
-      client.connect();
       const sql = `CREATE TABLE IF NOT EXISTS short_urls ( id INT AUTO INCREMENT, url VARCHAR 255 NOT NULL, code VARCHAR 255 NOT NULL, PRIMARY KEY(id) )`;
       await client.query(sql);
       client.end();
@@ -15,9 +15,9 @@ module.exports = {
   },
 
   async insertURL(data) {
+    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    client.connect();
     try {
-      const client = new Client({ connectionString: process.env.DATABASE_URL });
-      client.connect();
       const sql =
         "INSERT INTO short_urls (url, code) VALUES ($1, $2) RETURNING *";
       const response = await client.query(sql, data);
@@ -30,9 +30,9 @@ module.exports = {
   },
 
   async findURLByCode(code) {
+    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    client.connect();
     try {
-      const client = new Client({ connectionString: process.env.DATABASE_URL });
-      client.connect();
       const sql = "SELECT * WHERE code = $1";
       const response = await client.query(sql, [code]);
       client.end();
