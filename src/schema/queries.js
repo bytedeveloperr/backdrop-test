@@ -8,8 +8,7 @@ module.exports = {
   		const code = random.generate(6)
   		const shorturl = `https://bd-challenge.herokuapp.com/${code}`
 	    const insertedUrl = await database.insertURL([url, shorturl, code])
-	    console.log(insertedUrl)
-	    return insertedUrl;
+	    return insertedUrl.shorturl;
   	}
 
     throw new Error("Please enter a valid url")

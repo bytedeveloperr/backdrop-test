@@ -6,8 +6,10 @@ module.exports = `
      code: String!
    }
    
+   type ShortUrl: String!
+
    type Query {
-   	shortenURL(url: String): Url!
+   	shortenURL(url: String): ShortUrl!
    }
    
    schema {
