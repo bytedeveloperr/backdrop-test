@@ -12,7 +12,7 @@ module.exports = {
       }
       throw new Error("Please enter a valid url.");
     } catch (e) {
-      throw new Error("An error occured, please try again.");
+      throw new Error(e.message);
     }
   },
 };
