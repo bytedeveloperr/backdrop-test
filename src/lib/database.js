@@ -1,6 +1,8 @@
 const { Client } = require("pg");
 
-const connectionString = process.env.DATABASE_URL || "postgres://postgres:root@localhost:5432/backdrop"
+const connectionString =
+  process.env.DATABASE_URL ||
+  "postgres://postgres:root@localhost:5432/backdrop";
 
 module.exports = {
   async init() {

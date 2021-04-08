@@ -1,10 +1,10 @@
 const request = require("supertest");
-const app = require("../src/app")
+const app = require("../src/app");
 
-const vals = [1234, true]
+const vals = [1234, true];
 
 test("Shorten Invalid URL", (done) => {
-  const val = vals[Math.round(Math.random())]
+  const val = vals[Math.round(Math.random())];
   request(app)
     .get("/graphiql")
     .send({
@@ -17,7 +17,9 @@ test("Shorten Invalid URL", (done) => {
       expect(res.body).toBeInstanceOf(Object);
       expect(Array.isArray(res.body.errors)).toBe(true);
       expect(res.body.data).toBe(undefined);
-      expect(res.body.errors[0].message).toBe(`String cannot represent a non string value: ${val}`);
+      expect(res.body.errors[0].message).toBe(
+        `String cannot represent a non string value: ${val}`
+      );
       done();
     });
 });

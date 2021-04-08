@@ -13,7 +13,9 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
-    customFormatErrorFn: (e) => { console.log(e); return { message: e.message, status: "error" } },
+    customFormatErrorFn: (e) => {
+      return { message: e.message, status: "error" };
+    },
   })
 );
 
