@@ -1,3 +1,5 @@
+const { database } = require("../lib");
+
 module.exports = async (request) => {
   const url = await database.findURLByCode(request.params.code);
   if (url) {
