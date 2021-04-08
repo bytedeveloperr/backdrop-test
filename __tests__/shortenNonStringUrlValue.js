@@ -6,7 +6,7 @@ const vals = [1234, true];
 test("Shorten Non String Value Of URL", (done) => {
   const val = vals[Math.round(Math.random())];
   request(app)
-    .get("/graphiql")
+    .post("/graphiql")
     .send({
       query: `{ shortenURL(url: ${val}) }`,
     })

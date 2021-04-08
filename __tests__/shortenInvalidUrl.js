@@ -3,7 +3,7 @@ const app = require("../src/app");
 
 test("Shorten Invalid URL", (done) => {
   request(app)
-    .get("/graphiql")
+    .post("/graphiql")
     .send({
       query: '{ shortenURL(url: "twitter.com") }',
     })
