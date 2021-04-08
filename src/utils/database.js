@@ -5,7 +5,7 @@ module.exports = {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     client.connect();
     try {
-      const sql = `CREATE TABLE IF NOT EXISTS short_urls ( id INT AUTO INCREMENT, url VARCHAR 255 NOT NULL, code VARCHAR 255 NOT NULL, PRIMARY KEY(id) )`;
+      const sql = `CREATE TABLE IF NOT EXISTS short_urls ( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, url VARCHAR(255) NOT NULL, code VARCHAR(6) NOT NULL)`;
       await client.query(sql);
       client.end();
     } catch (e) {
