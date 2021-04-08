@@ -3,11 +3,11 @@ const database = require("../utils/database")
 const random = require("../utils/random")
 
 module.exports = {
-  async shortenURL(root, { longUrl }, ctx) {
-  	if (validUrl.isUri(longUrl)) {
+  async shortenURL(root, { url }, ctx) {
+  	if (validUrl.isUri(url)) {
   		const code = random.generate(6)
   		const shortUrl = `https://bd-challenge.herokuapp.com/${code}`
-  		const data = [longUrl, shortUrl, code]
+  		const data = [url, shortUrl, code]
 	    const insertedUrl = await database.insertURL(data)
 	    return insertedUrl;
   	}
