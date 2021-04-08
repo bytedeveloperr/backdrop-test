@@ -5,7 +5,7 @@ module.exports = {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     client.connect();
     try {
-      const sql = `CREATE TABLE IF NOT EXISTS urls (id SERIAL, longUrl VARCHAR NOT NULL, shortUrl VARCHAR NOT NULL, code VARCHAR NOT NULL)`;
+      const sql = `CREATE TABLE IF NOT EXISTS urls (id SERIAL, longurl VARCHAR NOT NULL, shorturl VARCHAR NOT NULL, code VARCHAR NOT NULL)`;
       await client.query(sql);
       client.end();
     } catch (e) {
@@ -19,7 +19,7 @@ module.exports = {
     client.connect();
     try {
       const sql =
-        "INSERT INTO urls (longUrl, shortUrl, code) VALUES ($1, $2, $3) RETURNING *";
+        "INSERT INTO urls (longurl, shorturl, code) VALUES ($1, $2, $3) RETURNING *";
       const response = await client.query(sql, data);
       client.end();
       return response.rows[0];
