@@ -3,7 +3,7 @@ const app = require("../src/app");
 
 const vals = [1234, true];
 
-test("Shorten Invalid URL", (done) => {
+test("Shorten Non String Value Of URL", (done) => {
   const val = vals[Math.round(Math.random())];
   request(app)
     .get("/graphiql")
