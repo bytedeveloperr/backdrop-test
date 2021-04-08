@@ -10,7 +10,8 @@ module.exports = {
       client.end();
     } catch (e) {
       client.end();
-      throw new Error("An error ocurred, please try again");
+      // throw new Error("An error ocurred, please try again");
+      console.log(e)
     }
   },
 
@@ -25,7 +26,8 @@ module.exports = {
       return response.rows[0];
     } catch (e) {
       client.end();
-      throw new Error("An error ocurred, please try again");
+      // throw new Error("An error ocurred, please try again");
+      console.log(e)
     }
   },
 
@@ -39,7 +41,8 @@ module.exports = {
       return response.rows[0];
     } catch (e) {
       client.end();
-      throw new Error("An error ocurred, please try again");
+      // throw new Error("An error ocurred, please try again");
+      console.log(e)
     }
   },
 };
