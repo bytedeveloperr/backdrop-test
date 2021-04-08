@@ -1,16 +1,18 @@
 const validUrl = require("valid-url")
-const database = require("../utils/database")
-const random = require("../utils/random")
+const { database, random } = require("../lib")
 
 module.exports = {
   async shortenURL(root, { url }, ctx) {
-  	if (validUrl.isUri(url)) {
-  		const code = random.generate(6)
-  		const shorturl = `https://bd-challenge.herokuapp.com/${code}`
-	    const insertedUrl = await database.insertURL([url, shorturl, code])
-	    return insertedUrl.shorturl;
+  	try {
+  		if (validUrl.isUri(url)) {
+	  		const code = random.generate(6)
+	  		const shorturl = `https://bd-challenge.herokuapp.com/${code}`
+		    const insertedUrl = await database.insertURL([url, shorturl, code])
+		    return insertedUrl.shorturl;
+	  	}
+	  	throw new Error("Please enter a valid url.")
+  	} catch (e) {
+  		throw new Error("An error occured, please try again.")
   	}
-
-    throw new Error("Please enter a valid url")
   },
 };
