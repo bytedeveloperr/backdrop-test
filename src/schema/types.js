@@ -1,15 +1,15 @@
 module.exports = `
-   type Url {
-     id: ID!
-     longurl: String!
-     shorturl: String!
-     code: String!
-   }
+   # type Url {
+   #   id: ID!
+   #   longurl: String!
+   #   shorturl: String!
+   #   code: String!
+   # }
    
-   scalar ShortUrl: String!
+   # scalar ShortUrl: String!
 
    type Query {
-   	shortenURL(url: String): ShortUrl!
+   	shortenURL(url: String): String!
    }
    
    schema {
