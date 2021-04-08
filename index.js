@@ -1,6 +1,5 @@
 const express = require("express");
 const graphql = require("graphql");
-const crypto = require("crypto");
 const { graphqlHTTP } = require("express-graphql");
 
 const database = require("./src/utils/database")
@@ -20,7 +19,7 @@ app.use(
 app.get("/:code", async (req, res) => {
   const url = await database.findURLByCode(req.params.code)
   if (url) {
-    res.redirect(url.original);
+    res.redirect(url.url);
   } else {
     res.send("url isn't shortened");
   }
