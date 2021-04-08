@@ -9,8 +9,10 @@ module.exports = {
   		const shortUrl = `https://bd-challenge.herokuapp.com/${code}`
   		const data = [longUrl, shortUrl, code]
 	    const insertedUrl = await database.insertURL(data)
+	    console.log(insertedUrl)
 	    return insertedUrl;
   	}
+
     throw new Error("Please enter a valid url")
   },
 };
