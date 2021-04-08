@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../src/app")
 
-test("Shorten URL", (done) => {
+test("Shorten Valid URL", (done) => {
   request(app)
     .get("/graphiql")
     .send({

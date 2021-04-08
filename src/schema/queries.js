@@ -10,7 +10,7 @@ module.exports = {
         const insertedUrl = await database.insertURL([url, shorturl, code]);
         return insertedUrl.shorturl;
       }
-      throw new Error("Please enter a valid url.");
+      throw new Error("Please enter a valid url. e.g http://example.com");
     } catch (e) {
       throw new Error(e.message);
     }

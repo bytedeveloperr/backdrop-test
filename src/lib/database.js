@@ -1,8 +1,10 @@
 const { Client } = require("pg");
 
+const connectionString = process.env.DATABASE_URL || "postgres://postgres:root@localhost:5432/backdrop"
+
 module.exports = {
   async init() {
-    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    const client = new Client({ connectionString });
     client.connect();
     try {
       const sql = `
@@ -18,7 +20,7 @@ module.exports = {
   },
 
   async insertURL(data) {
-    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    const client = new Client({ connectionString });
     client.connect();
     try {
       const sql =
@@ -33,7 +35,7 @@ module.exports = {
   },
 
   async findURLByCode(code) {
-    const client = new Client({ connectionString: process.env.DATABASE_URL });
+    const client = new Client({ connectionString });
     client.connect();
     try {
       const sql = "SELECT * FROM urls WHERE code = $1";
